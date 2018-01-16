@@ -3,13 +3,13 @@ $(function () {
         url: baseURL + 'chance/list',
         datatype: "json",
         colModel: [			
-			{ label: 'chanceId', name: 'chanceId', index: 'chance_id', width: 50, key: true },
-			{ label: '员工id', name: 'empId', index: 'emp_id', width: 80 }, 			
-			{ label: '客户id', name: 'customerId', index: 'customer_id', width: 80 }, 			
-			{ label: '产品id', name: 'productId', index: 'product_id', width: 80 }, 			
+			// { label: 'chanceId', name: 'chanceId', index: 'chance_id', width: 50, key: true },
+			{ label: '员工', name: 'userId', index: 'user_id', width: 80 },
+			{ label: '客户', name: 'customerId', index: 'customer_id', width: 80 },
+			{ label: '产品', name: 'productId', index: 'product_id', width: 80 },
 			{ label: '销售机会状态', name: 'chanceStatus', index: 'chance_status', width: 80 }, 			
 			{ label: '销售机会名称', name: 'chanceName', index: 'chance_name', width: 80 }, 			
-			{ label: '销售机会id', name: 'gmtCreate', index: 'gmt_create', width: 80 }, 			
+			{ label: '销售机会创建时间', name: 'gmtCreate', index: 'gmt_create', width: 80 },
 			{ label: '销售机会修改时间', name: 'gmtModified', index: 'gmt_modified', width: 80 }			
         ],
 		viewrecords: true,

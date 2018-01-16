@@ -3,7 +3,7 @@ $(function () {
         url: baseURL + 'customer/list',
         datatype: "json",
         colModel: [			
-			{ label: 'customerId', name: 'customerId', index: 'customer_id', width: 50, key: true },
+			// { label: 'customerId', name: 'customerId', index: 'customer_id', width: 50, key: true },
 			{ label: '客户名称', name: 'customerName', index: 'customer_name', width: 80 }, 			
 			{ label: '客户手机号码', name: 'customerMobile', index: 'customer_mobile', width: 80 }, 			
 			{ label: '客户创建时间', name: 'gmtCreate', index: 'gmt_create', width: 80 }, 			

@@ -3,11 +3,11 @@ $(function () {
         url: baseURL + 'product/list',
         datatype: "json",
         colModel: [			
-			{ label: 'productId', name: 'productId', index: 'product_id', width: 50, key: true },
-			{ label: '', name: 'productName', index: 'product_name', width: 80 }, 			
-			{ label: '', name: 'productDescribe', index: 'product_describe', width: 80 }, 			
-			{ label: '', name: 'productUnit', index: 'product_unit', width: 80 }, 			
-			{ label: '', name: 'productPrice', index: 'product_price', width: 80 }			
+			// { label: 'productId', name: 'productId', index: 'product_id', width: 50, key: true },
+			{ label: '产品名称', name: 'productName', index: 'product_name', width: 80 },
+			{ label: '产品描述', name: 'productDescribe', index: 'product_describe', width: 80 },
+			{ label: '单位', name: 'productUnit', index: 'product_unit', width: 80 },
+			{ label: '价格', name: 'productPrice', index: 'product_price', width: 80 }
         ],
 		viewrecords: true,
         height: 385,

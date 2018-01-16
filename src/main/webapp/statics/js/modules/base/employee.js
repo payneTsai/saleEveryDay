@@ -3,7 +3,7 @@ $(function () {
         url: baseURL + 'employee/list',
         datatype: "json",
         colModel: [			
-			{ label: 'empId', name: 'empId', index: 'emp_id', width: 50, key: true },
+			// { label: 'empId', name: 'empId', index: 'emp_id', width: 50, key: true },
 			{ label: '员工姓名', name: 'empName', index: 'emp_name', width: 80 }, 			
 			{ label: '员工密码', name: 'empPassword', index: 'emp_password', width: 80 }, 			
 			{ label: '员工邮箱', name: 'empEmail', index: 'emp_email', width: 80 }, 			

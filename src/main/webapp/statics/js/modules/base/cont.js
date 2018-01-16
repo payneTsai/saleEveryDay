@@ -3,12 +3,12 @@ $(function () {
         url: baseURL + 'cont/list',
         datatype: "json",
         colModel: [			
-			{ label: 'contId', name: 'contId', index: 'cont_id', width: 50, key: true },
-			{ label: '客户id', name: 'customerId', index: 'customer_id', width: 80 }, 			
-			{ label: '员工id', name: 'empId', index: 'emp_id', width: 80 }, 			
+			// { label: 'contId', name: 'contId', index: 'cont_id', width: 50, key: true },
+			// { label: '客户id', name: 'customerId', index: 'customerIdustomer_id', width: 80 },
+			// { label: '员工id', name: 'empId', index: 'emp_id', width: 80 },
 			{ label: '合同名称', name: 'contName', index: 'cont_name', width: 80 }, 			
 			{ label: '合同主题', name: 'theme', index: 'theme', width: 80 }, 			
-			{ label: '', name: 'contStatus', index: 'cont_status', width: 80 }, 			
+			{ label: '合同状态', name: 'contStatus', index: 'cont_status', width: 80 },
 			{ label: '销售金额', name: 'transactionMoney', index: 'transaction_money', width: 80 }, 			
 			{ label: '合同创建时间', name: 'gmtCreate', index: 'gmt_create', width: 80 }, 			
 			{ label: '合同修改时间', name: 'gmtModified', index: 'gmt_modified', width: 80 }			
