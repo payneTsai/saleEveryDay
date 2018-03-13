@@ -1,16 +1,25 @@
 $(function () {
     $.get(baseURL + "crm/sale/typelist", function(r){
-        console.log(r);
         vm.types = r.type;
     });
+
 })
 
 var vm = new Vue({
     el:'#sales',
     data: {
-        types:{}
+        types:{},
+        activeId: 1
     },
-    method:{},
+    methods:{
+        getClues:function (e) {
+            vm.activeId = e.target.id;
+            var typeid = e.target.id
+            $.get(baseURL + "crm/sale/clueslist?typeid="+typeid, function(r){
+                console.log(r);
+            });
+        }
+    },
     created:function () {
 
     }
@@ -18,8 +27,9 @@ var vm = new Vue({
 
 
 $(function () {
-    $("li:first").addClass("active")
+    /*$("li:first").addClass("active")
     $("div ul li").click(function () {
         $(this).addClass("add").siblings().removeClass("add");
-    })
+    })*/
+
 })
