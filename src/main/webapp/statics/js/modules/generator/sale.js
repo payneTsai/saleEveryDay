@@ -14,6 +14,12 @@ var vm = new Vue({
     created:function () {
 
     }
+})
 
 
+$(function () {
+    $("li:first").addClass("active")
+    $("div ul li").click(function () {
+        $(this).addClass("add").siblings().removeClass("add");
+    })
 })
