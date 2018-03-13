@@ -10,6 +10,28 @@
     <ul class="nav nav-tabs" >
         <li v-for="type in types" :id="type.id" v-bind:class="{active : type.id == activeId}" @click="getClues($event)"><a :id="type.id"  >{{type.typeName}}</a></li>
     </ul>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>序号</th>
+            <th>产品名称</th>
+            <th>产品描述</th>
+            <th>产品单位</th>
+            <th>产品价格</th>
+            <th>客户名称</th>
+            <th>客户手机号</th>
+            <th>客户所在地址</th>
+            <th>客户公司</th>
+            <th>客户邮箱</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="clue in clues">
+            <td>001</td>
+            <td>Rammohan </td>
+            <td>Reddy</td>
+            <td>A+</td>
+        </tr>
 
 </div>
 
