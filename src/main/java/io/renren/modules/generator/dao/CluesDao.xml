@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.modules.generator.dao.CluesDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.renren.modules.generator.entity.CluesEntity" id="cluesMap">
+        <result property="id" column="id"/>
+        <result property="productId" column="product_id"/>
+        <result property="customerId" column="customer_id"/>
+        <result property="typeId" column="type_id"/>
+    </resultMap>
+
+	<select id="queryObject" resultType="io.renren.modules.generator.entity.CluesEntity">
+		select * from tb_clues where id = #{value}
+	</select>
+
+	<select id="queryList" resultType="io.renren.modules.generator.entity.CluesEntity">
+		select * from tb_clues
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+
+	<!--根据类型id来查询市场线索-->
+	<select id="queryListByTypeId" resultType="io.renren.modules.generator.entity.CluesExtendsEntity" parameterType="java.lang.Integer">
+		select tb_clues.id ,tb_clues.product_id,tb_clues.customer_id,tb_clues.type_id,
+		tb_product.name AS productName,tb_product.`describe`,tb_product.price,tb_product.unit,
+		tb_customer.name AS customerName,tb_customer.address,tb_customer.business,tb_customer.email,tb_customer.mobile,
+		tb_type.type_name
+		from tb_clues
+		LEFT JOIN tb_product ON tb_product.id=tb_clues.product_id
+		LEFT JOIN tb_customer ON tb_customer.id=tb_clues.customer_id
+		LEFT JOIN tb_type ON tb_type.id = tb_clues.type_id
+		WHERE tb_clues.type_id= #{typeId}
+		<choose>
+			<otherwise>
+				order by id desc
+			</otherwise>
+		</choose>
+
+	</select>
+	
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from tb_clues 
+	</select>
+	 
+	<insert id="save" parameterType="io.renren.modules.generator.entity.CluesEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into tb_clues
+		(
+			`product_id`, 
+			`customer_id`, 
+			`type_id`
+		)
+		values
+		(
+			#{productId}, 
+			#{customerId}, 
+			#{typeId}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="io.renren.modules.generator.entity.CluesEntity">
+		update tb_clues 
+		<set>
+			<if test="productId != null">`product_id` = #{productId}, </if>
+			<if test="customerId != null">`customer_id` = #{customerId}, </if>
+			<if test="typeId != null">`type_id` = #{typeId}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from tb_clues where id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from tb_clues where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>
