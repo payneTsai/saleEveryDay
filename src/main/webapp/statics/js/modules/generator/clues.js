@@ -10,7 +10,6 @@
 // });
 
 function get(ids) {
-
     $("#jqGrid").jqGrid({
         url: baseURL + 'clues/list',
         datatype: "json",
@@ -142,7 +141,6 @@ var vm = new Vue({
 	},
     created:function () {
         $.get(baseURL + "clues/typelist", function(r){
-            // console.log(r);
             vm.types = r.type;
         });
         get(1);

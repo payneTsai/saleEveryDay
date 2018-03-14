@@ -1,35 +1,30 @@
-$(function () {
-    $.get(baseURL + "crm/sale/typelist", function(r){
-        vm.types = r.type;
-    });
 
-})
 
-var vm = new Vue({
+var app = new Vue({
     el:'#sales',
     data: {
+        clues:[],
         types:{},
         activeId: 1
     },
     methods:{
         getClues:function (e) {
-            vm.activeId = e.target.id;
+            app.activeId = e.target.id;
             var typeid = e.target.id
             $.get(baseURL + "crm/sale/clueslist?typeid="+typeid, function(r){
                 console.log(r);
+                app.clues = r.clue;
             });
         }
     },
     created:function () {
-
+        $.get(baseURL + "crm/sale/typelist", function(r){
+            app.types = r.type;
+        });
+        $.get(baseURL + "crm/sale/clueslist?typeid="+1, function(r){
+            console.log(r);
+            app.clues = r.clue;
+        });
     }
 })
 
-
-$(function () {
-    /*$("li:first").addClass("active")
-    $("div ul li").click(function () {
-        $(this).addClass("add").siblings().removeClass("add");
-    })*/
-
-})

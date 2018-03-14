@@ -35,7 +35,7 @@ public class salesController {
     @RequestMapping("clueslist")
     public R clueList(@RequestParam Integer typeid){
         List<CluesExtendsEntity> cluesExtendsEntities = cluesService.queryListByTypeId(typeid);
-        return R.ok().put("cluesExtendsEntities",cluesExtendsEntities);
+        return R.ok().put("clue",cluesExtendsEntities);
     }
 
 
