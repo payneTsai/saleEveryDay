@@ -1,8 +1,7 @@
-
-
 var app = new Vue({
     el:'#sales',
     data: {
+        showList:true,
         clues:[],
         types:{},
         activeId: 1
@@ -15,6 +14,12 @@ var app = new Vue({
                 console.log(r);
                 app.clues = r.clue;
             });
+        },
+        add:function () {
+            app.showList=false;
+        },
+        back:function () {
+            app.showList=true;
         }
     },
     created:function () {
