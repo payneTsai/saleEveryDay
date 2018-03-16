@@ -2,6 +2,7 @@ package io.renren.modules.generator.dao;
 
 import io.renren.modules.generator.entity.CluesEntity;
 import io.renren.modules.generator.entity.CluesExtendsEntity;
+import io.renren.modules.generator.entity.CustomerEntity;
 import io.renren.modules.sys.dao.BaseDao;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -17,5 +18,5 @@ import java.util.List;
 @Mapper
 public interface CluesDao extends BaseDao<CluesEntity> {
     List<CluesExtendsEntity> queryListByTypeId(Integer typeId);
-	
+
 }

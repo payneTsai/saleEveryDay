@@ -4,9 +4,12 @@ var app = new Vue({
         showList:true,
         clues:[],
         types:{},
-        activeId: 1
+        activeId: 1,
+        user:{},
+        customers:{}
     },
     methods:{
+
         getClues:function (e) {
             app.activeId = e.target.id;
             var typeid = e.target.id
@@ -16,6 +19,10 @@ var app = new Vue({
             });
         },
         add:function () {
+            $.get(baseURL + "crm/customer/customerlist", function(r){
+                app.customers = r.customerList;
+                console.log(app.customers);
+            });
             app.showList=false;
         },
         back:function () {
@@ -29,6 +36,10 @@ var app = new Vue({
         $.get(baseURL + "crm/sale/clueslist?typeid="+1, function(r){
             console.log(r);
             app.clues = r.clue;
+        });
+        $.getJSON("sys/user/info?_"+$.now(), function(r){
+            app.user = r.user;
+            console.log(app.user)
         });
     }
 })

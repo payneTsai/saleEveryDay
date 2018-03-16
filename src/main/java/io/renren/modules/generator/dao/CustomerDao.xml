@@ -17,6 +17,10 @@
 		select * from tb_customer where id = #{value}
 	</select>
 
+	<select id="queryCustomerList" resultType="io.renren.modules.generator.entity.CustomerEntity">
+		select * from tb_customer
+	</select>
+
 	<select id="queryList" resultType="io.renren.modules.generator.entity.CustomerEntity">
 		select * from tb_customer
         <choose>
