@@ -4,37 +4,112 @@
 <head>
     <meta charset="UTF-8">
     <title>市场线索</title>
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
 </head>
 <body>
 <div id="sales">
-    <ul class="nav nav-tabs" >
-        <li v-for="type in types" :id="type.id" v-bind:class="{active : type.id == activeId}" @click="getClues($event)"><a :id="type.id"  >{{type.typeName}}</a></li>
-    </ul>
-    <table class="table">
-        <thead>
-        <tr>
-            <th>序号</th>
-            <th>产品名称</th>
-            <th>产品描述</th>
-            <th>产品单位</th>
-            <th>产品价格</th>
-            <th>客户名称</th>
-            <th>客户手机号</th>
-            <th>客户所在地址</th>
-            <th>客户公司</th>
-            <th>客户邮箱</th>
-        </tr>
-        </thead>
-        <tbody>
-        <tr v-for="clue in clues">
-            <td>001</td>
-            <td>Rammohan </td>
-            <td>Reddy</td>
-            <td>A+</td>
-        </tr>
+    <div v-show="showList">
+        <a class="btn btn-primary pull-right margin-right:20px" @click="add"><i class="fa fa-plus"></i>&nbsp;新增</a>
+        <ul class="nav nav-tabs">
+            <li v-for="type in types" :id="type.id" v-bind:class="{active : type.id == activeId}"
+                @click="getClues($event)"><a :id="type.id">{{type.typeName}}</a></li>
+        </ul>
+        <br>
+        <table class="table table-bordered table-hover">
+            <thead>
+            <tr>
+                <th>标识</th>
+                <th>产品名称</th>
+                <th>产品描述</th>
+                <th>产品单位</th>
+                <th>产品价格</th>
+                <th>客户名称</th>
+                <th>客户手机号</th>
+                <th>客户所在地址</th>
+                <th>客户公司</th>
+                <th>客户邮箱</th>
+                <th>操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr v-for="clue in clues">
+                <td>{{clue.id}}</td>
+                <td>{{clue.productName}}</td>
+                <td>{{clue.describe}}</td>
+                <td>{{clue.unit}}</td>
+                <td>{{clue.price}}</td>
+                <td>{{clue.customerName}}</td>
+                <td>{{clue.mobile}}</td>
+                <td>{{clue.address}}</td>
+                <td>{{clue.business}}</td>
+                <td>{{clue.email}}</td>
+                <td>
+                    <div class="grid-btn">
+                        <a class="btn btn-primary"><i class="fa fa-pencil-square-o"></i>&nbsp;修改</a>
+                        <a class="btn btn-primary"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
 
+    <!--<div v-show="!showList" class="panel panel-default">-->
+        <!--<div class="panel-heading">新增</div>-->
+        <!--<form class="form-horizontal">-->
+            <!--<div class="form-group">-->
+                <!--<div class="col-sm-2 control-label">选择产品</div>-->
+                <!--<div class="col-sm-10">-->
+                    <!--<input type="text" class="form-control" v-model="clues.productId" placeholder="选择产品"/>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<div class="col-sm-2 control-label">选择客户</div>-->
+                <!--<div class="col-sm-10">-->
+                    <!--<input type="text" class="form-control" v-model="clues.customerId" placeholder="选择客户"/>-->
+                    <!--<el-dropdown>-->
+                      <!--<span class="el-dropdown-link">-->
+                        <!--下拉菜单<i class="el-icon-arrow-down el-icon&#45;&#45;right"></i>-->
+                      <!--</span>-->
+                        <!--<el-dropdown-menu slot="dropdown">-->
+                            <!--<el-dropdown-item v-for="customer in customers">{{customer.name}}</el-dropdown-item>-->
+                        <!--</el-dropdown-menu>-->
+                    <!--</el-dropdown>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="form-group">-->
+                <!--<div class="col-sm-2 control-label"></div>-->
+                <!--<input type="button" class="btn btn-primary" value="确定"/>-->
+                <!--&nbsp;&nbsp;<input type="button" class="btn btn-warning" @click="back" value="返回"/>-->
+            <!--</div>-->
+        <!--</form>-->
+    <!--</div>-->
+
+    <div v-show="!showList">
+        <el-form :inline="true" class="demo-form-inline">
+            <el-form-item label="线索名称">
+                <el-input  placeholder="线索名称"></el-input>
+            </el-form-item>
+            <el-form-item label="所选客户公司">
+                <el-select  placeholder="客户公司">
+                    <el-option v-for="customer in customers" label="{{customer.name}}"></el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item label="所选产品">
+                <el-select  placeholder="产品">
+                    <el-option label="区域一" value="shanghai"></el-option>
+                    <el-option label="区域二" value="beijing"></el-option>
+                </el-select>
+            </el-form-item>
+            <el-form-item>
+                <el-button type="primary">增加</el-button>
+            </el-form-item>
+        </el-form>
+    </div>
 </div>
-
 </body>
 <script src="${request.contextPath}/statics/js/modules/generator/sale.js"></script>
 </html>

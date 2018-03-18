@@ -23,6 +23,7 @@ import java.util.Map;
  */
 @RestController
 @RequestMapping("/sys/config")
+
 public class SysConfigController extends AbstractController {
 	@Autowired
 	private SysConfigService sysConfigService;

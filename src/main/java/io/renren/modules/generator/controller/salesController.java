@@ -1,11 +1,13 @@
 package io.renren.modules.generator.controller;
 
 import io.renren.common.utils.R;
+import io.renren.modules.generator.entity.CluesEntity;
 import io.renren.modules.generator.entity.CluesExtendsEntity;
 import io.renren.modules.generator.entity.TypeEntity;
 import io.renren.modules.generator.service.CluesService;
 import io.renren.modules.generator.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -35,10 +37,28 @@ public class salesController {
     @RequestMapping("clueslist")
     public R clueList(@RequestParam Integer typeid){
         List<CluesExtendsEntity> cluesExtendsEntities = cluesService.queryListByTypeId(typeid);
-        return R.ok().put("cluesExtendsEntities",cluesExtendsEntities);
+        return R.ok().put("clue",cluesExtendsEntities);
     }
 
+    /**
+     * 修改
+     */
+    @RequestMapping("/update")
+    public R update(@RequestBody CluesEntity clues){
+        cluesService.update(clues);
 
+        return R.ok();
+    }
+
+    /**
+     * 删除
+     */
+    @RequestMapping("/delete")
+    public R delete(@RequestBody Integer[] ids){
+        cluesService.deleteBatch(ids);
+
+        return R.ok();
+    }
 
 
 

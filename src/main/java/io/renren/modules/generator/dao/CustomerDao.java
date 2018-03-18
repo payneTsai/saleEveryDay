@@ -4,6 +4,8 @@ import io.renren.modules.generator.entity.CustomerEntity;
 import io.renren.modules.sys.dao.BaseDao;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * 客户表
  * 
@@ -13,5 +15,6 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface CustomerDao extends BaseDao<CustomerEntity> {
+    List<CustomerEntity> queryCustomerList();
 	
 }

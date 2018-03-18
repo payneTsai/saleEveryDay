@@ -51,5 +51,10 @@ public class CustomerServiceImpl implements CustomerService {
 	public void deleteBatch(Integer[] ids){
 		customerDao.deleteBatch(ids);
 	}
+
+	@Override
+	public List<CustomerEntity> queryCustomerList(){
+		return  customerDao.queryCustomerList();
+	};
 	
 }

@@ -47,7 +47,18 @@ public class CustomerController {
 		
 		return R.ok().put("page", pageUtil);
 	}
-	
+
+	/**
+	 * 无权限列表
+	 */
+	@RequestMapping("/customerlist")
+	public R list(){
+
+		List<CustomerEntity> customerList = customerService.queryCustomerList();
+
+
+		return R.ok().put("customerList", customerList);
+	}
 	
 	/**
 	 * 信息

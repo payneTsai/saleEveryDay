@@ -27,4 +27,6 @@ public interface CustomerService {
 	void delete(Integer id);
 	
 	void deleteBatch(Integer[] ids);
+
+	List<CustomerEntity> queryCustomerList();
 }
