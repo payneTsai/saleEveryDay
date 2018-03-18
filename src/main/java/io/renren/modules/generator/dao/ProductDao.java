@@ -4,6 +4,8 @@ import io.renren.modules.generator.entity.ProductEntity;
 import io.renren.modules.sys.dao.BaseDao;
 import org.apache.ibatis.annotations.Mapper;
 
+import java.util.List;
+
 /**
  * 产品表
  * 
@@ -13,5 +15,5 @@ import org.apache.ibatis.annotations.Mapper;
  */
 @Mapper
 public interface ProductDao extends BaseDao<ProductEntity> {
-	
+	List<ProductEntity> queryProductList();
 }

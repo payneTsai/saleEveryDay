@@ -51,5 +51,10 @@ public class ProductServiceImpl implements ProductService {
 	public void deleteBatch(Integer[] ids){
 		productDao.deleteBatch(ids);
 	}
+
+	@Override
+	public List<ProductEntity> queryProductList(){
+		return productDao.queryProductList();
+	};
 	
 }

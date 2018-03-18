@@ -48,7 +48,15 @@ public class ProductController {
 		
 		return R.ok().put("page", pageUtil);
 	}
-	
+
+	/**
+	 * 查询所有产品列表
+	 */
+	@RequestMapping("/productlist")
+	public R list(){
+		List<ProductEntity> productList = productService.queryProductList();
+		return R.ok().put("productList", productList);
+	}
 	
 	/**
 	 * 信息

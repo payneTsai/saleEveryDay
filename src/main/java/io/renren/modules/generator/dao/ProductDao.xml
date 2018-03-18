@@ -16,6 +16,10 @@
 		select * from tb_product where id = #{value}
 	</select>
 
+	<select id="queryProductList" resultType="io.renren.modules.generator.entity.ProductEntity">
+		select * from tb_product
+	</select>
+
 	<select id="queryList" resultType="io.renren.modules.generator.entity.ProductEntity">
 		select * from tb_product
         <choose>

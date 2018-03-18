@@ -53,10 +53,7 @@ public class CustomerController {
 	 */
 	@RequestMapping("/customerlist")
 	public R list(){
-
 		List<CustomerEntity> customerList = customerService.queryCustomerList();
-
-
 		return R.ok().put("customerList", customerList);
 	}
 	

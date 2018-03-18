@@ -6,7 +6,10 @@ var app = new Vue({
         types:{},
         activeId: 1,
         user:{},
-        customers:{}
+        customers:{},
+        products:{},
+        cname:"",
+        pname: ""
     },
     methods:{
 
@@ -22,6 +25,10 @@ var app = new Vue({
             $.get(baseURL + "crm/customer/customerlist", function(r){
                 app.customers = r.customerList;
                 console.log(app.customers);
+            });
+            $.get(baseURL + "crm/product/productlist", function(r){
+                app.products = r.productList;
+                console.log(app.products);
             });
             app.showList=false;
         },
@@ -40,6 +47,14 @@ var app = new Vue({
         $.getJSON("sys/user/info?_"+$.now(), function(r){
             app.user = r.user;
             console.log(app.user)
+        });
+        $.get(baseURL + "crm/customer/customerlist", function(r){
+            app.customers = r.customerList;
+            console.log(app.customers);
+        });
+        $.get(baseURL + "crm/product/productlist", function(r){
+            app.products = r.productList;
+            console.log(app.products);
         });
     }
 })
