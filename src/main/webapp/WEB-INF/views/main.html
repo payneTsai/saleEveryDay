@@ -89,24 +89,27 @@
     <!--</div>-->
 
     <div v-show="!showList">
-        <el-form  class="demo-form-inline">
-            <el-form-item label="线索名称">
-                <el-input  placeholder="线索名称"></el-input>
+        <template>
+        <el-form  style="margin-left: 40px; margin-top: 20px;" class="demo-form-inline">
+            <el-form-item style="width:130px;" label="线索名称">
+                <el-input  style="width: 230px;" placeholder="线索名称"></el-input>
             </el-form-item>
-            <el-form-item label="所选客户公司">
+            <el-form-item style="width: 230px;" label="所选客户公司">
                 <el-select v-model="cname"  placeholder="请选择客户公司">
                     <el-option v-for="customer in customers" :key="customer.id" :label="customer.name" :value="customer.name"></el-option>
                 </el-select>
             </el-form-item>
-            <el-form-item label="所选产品">
+            <el-form-item  style="width: 230px;" label="所选产品">
                 <el-select v-model="pname"  placeholder="请选择产品">
                     <el-option v-for="product in products" :key="product.id" :label="product.name" :value="product.name"></el-option>
                 </el-select>
             </el-form-item>
             <el-form-item>
-                <el-button type="primary">增加</el-button>
+                <el-button type="primary" @click="addClues($event)">增加</el-button>
+                <el-button @click="back">返回</el-button>
             </el-form-item>
         </el-form>
+        </template>
     </div>
 </div>
 </body>
