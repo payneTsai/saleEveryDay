@@ -14,7 +14,9 @@ import java.util.Date;
  */
 public class CluesEntity implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
+	//市场销售名称、
+	private String clueName;
 	//市场销售表
 	private Integer id;
 	//产品表Id
@@ -23,6 +25,15 @@ public class CluesEntity implements Serializable {
 	private Integer customerId;
 	//销售类型id
 	private Integer typeId;
+
+
+	public String getClueName() {
+		return clueName;
+	}
+
+	public void setClueName(String clueName) {
+		this.clueName = clueName;
+	}
 
 	/**
 	 * 设置：市场销售表

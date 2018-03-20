@@ -22,6 +22,7 @@
             <thead>
             <tr>
                 <th>标识</th>
+                <th>销售线索名称</th>
                 <th>产品名称</th>
                 <th>产品描述</th>
                 <th>产品单位</th>
@@ -37,6 +38,7 @@
             <tbody>
             <tr v-for="clue in clues">
                 <td>{{clue.id}}</td>
+                <td>{{clue.clueName}}</td>
                 <td>{{clue.productName}}</td>
                 <td>{{clue.describe}}</td>
                 <td>{{clue.unit}}</td>
@@ -92,20 +94,26 @@
         <template>
         <el-form  style="margin-left: 40px; margin-top: 20px;" class="demo-form-inline">
             <el-form-item style="width:130px;" label="线索名称">
-                <el-input  style="width: 230px;" placeholder="线索名称"></el-input>
+                <el-input v-model="cluename" style="width: 230px;" placeholder="线索名称"></el-input>
             </el-form-item>
             <el-form-item style="width: 230px;" label="所选客户公司">
                 <el-select v-model="cname"  placeholder="请选择客户公司">
-                    <el-option v-for="customer in customers" :key="customer.id" :label="customer.name" :value="customer.name"></el-option>
+                    <el-option v-for="customer in customers" :key="customer.id" :label="customer.business" :value="customer.id"></el-option>
                 </el-select>
             </el-form-item>
             <el-form-item  style="width: 230px;" label="所选产品">
                 <el-select v-model="pname"  placeholder="请选择产品">
-                    <el-option v-for="product in products" :key="product.id" :label="product.name" :value="product.name"></el-option>
+                    <el-option v-for="product in products" :key="product.id" :label="product.name" :value="product.id"></el-option>
                 </el-select>
             </el-form-item>
+            <el-form-item label="是否本人销售">
+                <el-radio-group v-model="mine">
+                    <el-radio label="1" >是</el-radio>
+                    <el-radio label="0" >否</el-radio>
+                </el-radio-group>
+            </el-form-item>
             <el-form-item>
-                <el-button type="primary" @click="addClues($event)">增加</el-button>
+                <el-button type="primary" @click="addClues">增加</el-button>
                 <el-button @click="back">返回</el-button>
             </el-form-item>
         </el-form>

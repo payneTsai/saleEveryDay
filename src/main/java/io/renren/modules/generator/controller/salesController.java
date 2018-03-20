@@ -7,10 +7,7 @@ import io.renren.modules.generator.entity.TypeEntity;
 import io.renren.modules.generator.service.CluesService;
 import io.renren.modules.generator.service.TypeService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -34,10 +31,36 @@ public class salesController {
         return R.ok().put("type", typeList);
     }
 
+
+    /***
+     * 查询销售线索信息
+     */
     @RequestMapping("clueslist")
     public R clueList(@RequestParam Integer typeid){
         List<CluesExtendsEntity> cluesExtendsEntities = cluesService.queryListByTypeId(typeid);
         return R.ok().put("clue",cluesExtendsEntities);
+    }
+
+    /**
+     * 新增销售线索
+    * */
+    @PostMapping("addclues")
+    public R addClues(@RequestParam Integer userId,@RequestParam String cluename,@RequestParam String productId,@RequestParam String customerId){
+        System.out.println(userId);
+        System.out.println(cluename);
+        System.out.println(productId);
+        System.out.println(customerId);
+        CluesEntity cluesEntity = new CluesEntity();
+        cluesEntity.setClueName(cluename);
+        cluesEntity.setCustomerId(Integer.valueOf(customerId));
+        cluesEntity.setProductId(Integer.valueOf(productId));
+        if (userId==0){
+            cluesEntity.setTypeId(1);
+        }else{
+            cluesEntity.setTypeId(2);
+        }
+        cluesService.save(cluesEntity);
+        return R.ok();
     }
 
     /**

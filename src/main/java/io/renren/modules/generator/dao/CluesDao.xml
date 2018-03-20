@@ -6,6 +6,7 @@
 	<!-- 可根据自己的需求，是否要使用 -->
     <resultMap type="io.renren.modules.generator.entity.CluesEntity" id="cluesMap">
         <result property="id" column="id"/>
+		<result property="clueName" column="clue_name"/>
         <result property="productId" column="product_id"/>
         <result property="customerId" column="customer_id"/>
         <result property="typeId" column="type_id"/>
@@ -32,7 +33,7 @@
 
 	<!--根据类型id来查询市场线索-->
 	<select id="queryListByTypeId" resultType="io.renren.modules.generator.entity.CluesExtendsEntity" parameterType="java.lang.Integer">
-		select tb_clues.id ,tb_clues.product_id,tb_clues.customer_id,tb_clues.type_id,
+		select tb_clues.clue_name, tb_clues.id ,tb_clues.product_id,tb_clues.customer_id,tb_clues.type_id,
 		tb_product.name AS productName,tb_product.`describe`,tb_product.price,tb_product.unit,
 		tb_customer.name AS customerName,tb_customer.address,tb_customer.business,tb_customer.email,tb_customer.mobile,
 		tb_type.type_name
@@ -56,12 +57,14 @@
 	<insert id="save" parameterType="io.renren.modules.generator.entity.CluesEntity" useGeneratedKeys="true" keyProperty="id">
 		insert into tb_clues
 		(
+			`clue_name`,
 			`product_id`, 
 			`customer_id`, 
 			`type_id`
 		)
 		values
 		(
+			#{clueName},
 			#{productId}, 
 			#{customerId}, 
 			#{typeId}

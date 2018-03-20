@@ -5,7 +5,18 @@ import java.io.Serializable;
 public class CluesExtendsEntity implements Serializable {
     private static final long serialVersionUID = 1L;
 
+    //市场销售名称、
+    private String clueName;
     //市场销售表
+
+    public String getClueName() {
+        return clueName;
+    }
+
+    public void setClueName(String clueName) {
+        this.clueName = clueName;
+    }
+
     private Integer id;
     //产品表Id
     private Integer productId;

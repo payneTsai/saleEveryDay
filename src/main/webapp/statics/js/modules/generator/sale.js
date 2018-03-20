@@ -10,6 +10,9 @@ var app = new Vue({
         products:{},
         cname:"",
         pname: "",
+        cluename:"",
+        mine:0
+
     },
     methods:{
 
@@ -22,6 +25,9 @@ var app = new Vue({
             });
         },
         add:function () {
+            app.cname="";
+            app.pname="";
+            app.cluename="";
             $.get(baseURL + "crm/customer/customerlist", function(r){
                 app.customers = r.customerList;
                 // console.log(app.customers);
@@ -36,7 +42,23 @@ var app = new Vue({
             app.showList=true;
         },
         addClues:function(e){
-            console.log(e)
+            var hasuserid = 0 ;
+            if (1==app.mine){
+                hasuserid = app.user.userId;
+            }else{
+                hasuserid == 0;
+            }
+            $.post(baseURL + "crm/sale/addclues",
+            {
+                cluename:app.cluename,
+                productId:app.pname,
+                customerId:app.cname,
+                userId:hasuserid
+
+            }, function(r){
+                    app.back();
+            });
+
         }
 
     },
