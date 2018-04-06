@@ -32,7 +32,7 @@
                 <th>客户所在地址</th>
                 <th>客户公司</th>
                 <th>客户邮箱</th>
-                <th v-show="!(type == 2 || type == 4)">操作</th>
+                <th>操作</th>
             </tr>
             </thead>
             <tbody>
@@ -48,19 +48,16 @@
                 <td>{{clue.address}}</td>
                 <td>{{clue.business}}</td>
                 <td>{{clue.email}}</td>
-                <td v-show="!(type == 2 || type == 4)">
+                <td>
                     <div class="grid-btn">
-                        <a class="btn btn-primary" v-show="type == 1 || type == 3" @click="pull($event)" ><i class="fa fa-pencil-square-o"></i>&nbsp;拉取</a>
-                        <a class="btn btn-primary" v-show="type == 1" @click="del($event)"><i class="fa fa-trash-o"></i>&nbsp;删除
-                        </a>
+                        <a class="btn btn-primary"><i class="fa fa-pencil-square-o"></i>&nbsp;拉取</a>
+                        <a class="btn btn-primary"><i class="fa fa-trash-o"></i>&nbsp;删除</a>
                     </div>
                 </td>
             </tr>
             </tbody>
         </table>
     </div>
-
-
 
     <div v-show="!showList">
         <template>
@@ -93,5 +90,5 @@
     </div>
 </div>
 </body>
-<script src="${request.contextPath}/statics/js/modules/generator/sale.js"></script>
+<script src="${request.contextPath}/statics/js/modules/generator/sale2.js"></script>
 </html>

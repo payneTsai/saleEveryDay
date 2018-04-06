@@ -35,22 +35,7 @@ public class CluesController {
 
 	@Autowired
 	private TypeService typeService;
-	/**
-	 * 列表
-	 */
-//	@RequestMapping("/list")
-//	@RequiresPermissions("clues:list")
-//	public R list(@RequestParam Map<String, Object> params){
-//		//查询列表数据
-//        Query query = new Query(params);
-//
-//		List<CluesEntity> cluesList = cluesService.queryList(query);
-//		int total = cluesService.queryTotal(query);
-//
-//		PageUtils pageUtil = new PageUtils(cluesList, total, query.getLimit(), query.getPage());
-//
-//		return R.ok().put("page", pageUtil);
-//	}
+
 
 
 	@RequestMapping("/list")
@@ -58,7 +43,6 @@ public class CluesController {
 	public R list(@RequestParam Map<String, Object> params){
 		//查询列表数据
 		Query query = new Query(params);
-//		List<CluesEntity> cluesList = cluesService.queryList(query);
 		List<CluesExtendsEntity> cluesExtendsEntityList = cluesService.queryListByTypeId(Integer.parseInt((String) params.get("typeid")));
 		int total = cluesService.queryTotal(query);
 

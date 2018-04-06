@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>销售机会</title>
+<#include "/header.html">
+    <!-- 引入样式 -->
+    <link rel="stylesheet" href="https://unpkg.com/element-ui/lib/theme-chalk/index.css">
+    <!-- 引入组件库 -->
+    <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+</head>
+<body>
+<div id="chance">
+    <table class="table table-bordered table-hover" v-show="!success">
+        <thead>
+        <tr>
+            <th>标识</th>
+            <th>销售线索名称</th>
+            <th>产品名称</th>
+            <th>客户名称</th>
+            <th>客户手机号</th>
+            <th>客户所在地址</th>
+            <th>操作</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="chance in chances">
+            <td>{{chance.id}}</td>
+            <td>{{chance.chanceName}}</td>
+            <td>{{chance.productName}}</td>
+            <td>{{chance.customerName}}</td>
+            <td>{{chance.customerMobile}}</td>
+            <td>{{chance.customerAddress}}</td>
+            <td>
+                <div class="grid-btn">
+                    <a class="btn btn-primary" @click="switchSuccess(chance)" data-toggle="modal" data-target="#myModal"><i class="fa fa-pencil-square-o"></i>&nbsp;转为合同</a>
+                    <a class="btn btn-primary" @click="switchFail(chance.id)"><i class="fa fa-trash-o"></i>&nbsp;转为失败</a>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div v-show="success">
+        <template>
+            <el-form  style="margin-left: 40px; margin-top: 20px;" class="demo-form-inline">
+                <el-form-item style="width:130px;" label="合同名称">
+                    <el-input v-model="contractName" style="width: 230px;" placeholder="合同名称"></el-input>
+                </el-form-item>
+                <el-form-item style="width:130px;" label="合同金额">
+                    <el-input v-model="money" style="width: 230px;" placeholder="合同金额"></el-input>
+                </el-form-item>
+
+
+                <el-form-item>
+                    <el-button type="primary" @click="turn()">增加</el-button>
+                    <el-button @click="back">返回</el-button>
+                </el-form-item>
+            </el-form>
+        </template>
+    </div>
+
+</div>
+<script src="${request.contextPath}/statics/js/modules/generator/chance.js?_${.now?long}"></script>
+</body>
+</html>

@@ -58,5 +58,9 @@ public class CluesServiceImpl implements CluesService {
 	public List<CluesExtendsEntity> queryListByTypeId(Integer typeId){
 		return cluesDao.queryListByTypeId(typeId);
 	}
-	
+
+	@Override
+	public List<CluesExtendsEntity> queryListById(Integer id) {
+		return cluesDao.queryListById(id);
+	}
 }

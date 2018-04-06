@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>合同管理</title>
+<#include "/header.html">
+</head>
+<body>
+<div id="contract">
+	<table class="table table-bordered table-hover">
+		<thead>
+		<tr>
+			<th>合同名称</th>
+			<th>客户名称</th>
+			<th>员工名称</th>
+			<th>客户公司名称</th>
+			<th>合同金额</th>
+		</tr>
+		</thead>
+		<tbody>
+		<tr v-for="contract in contracts">
+			<td>{{contract.contractName}}</td>
+			<td>{{contract.customerName}}</td>
+			<td>{{contract.employeeName}}</td>
+			<td>{{contract.business}}</td>
+			<td>{{contract.money}}</td>
+		</tr>
+		</tbody>
+	</table>
+</div>
+
+<script src="${request.contextPath}/statics/js/modules/generator/contract.js?_${.now?long}"></script>
+</body>
+</html>

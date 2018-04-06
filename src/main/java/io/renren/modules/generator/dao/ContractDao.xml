@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.modules.generator.dao.ContractDao">
+
+	<!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.renren.modules.generator.entity.ContractEntity" id="contractMap">
+        <result property="id" column="id"/>
+        <result property="customerId" column="customer_id"/>
+        <result property="userId" column="user_id"/>
+        <result property="contractName" column="contract_name"/>
+		<result property="money" column="money"/>
+    </resultMap>
+
+	<select id="queryObject" resultType="io.renren.modules.generator.entity.ContractEntity">
+		select * from tb_contract where id = #{value}
+	</select>
+
+	<select id="queryList" resultType="io.renren.modules.generator.entity.ContractEntity">
+		select * from tb_contract
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+			<otherwise>
+                order by id desc
+			</otherwise>
+        </choose>
+		<if test="offset != null and limit != null">
+			limit #{offset}, #{limit}
+		</if>
+	</select>
+
+	<select id="selectContractByUserId" resultType="io.renren.modules.generator.entity.ContractExtendsEntity">
+		SELECT tb_customer.name AS customerName,tb_customer.business AS business,
+		sys_user.username AS employeeName,tb_contract.money AS money,
+		tb_contract.contract_name AS contractName
+		FROM tb_contract
+		LEFT JOIN tb_customer ON customer_id = tb_customer.id
+		LEFT JOIN sys_user ON tb_contract.user_id = sys_user.user_id
+		WHERE tb_contract.user_id = #{value}
+		<choose>
+			<otherwise>
+				order by tb_contract.id desc
+			</otherwise>
+		</choose>
+	</select>
+
+ 	<select id="queryTotal" resultType="int">
+		select count(*) from tb_contract 
+	</select>
+	 
+	<insert id="save" parameterType="io.renren.modules.generator.entity.ContractEntity" useGeneratedKeys="true" keyProperty="id">
+		insert into tb_contract
+		(
+			`customer_id`, 
+			`user_id`, 
+			`contract_name`,
+			`money`
+		)
+		values
+		(
+			#{customerId}, 
+			#{userId}, 
+			#{contractName},
+			#{money}
+		)
+	</insert>
+	 
+	<update id="update" parameterType="io.renren.modules.generator.entity.ContractEntity">
+		update tb_contract 
+		<set>
+			<if test="customerId != null">`customer_id` = #{customerId}, </if>
+			<if test="userId != null">`user_id` = #{userId}, </if>
+			<if test="contractName != null">`contract_name` = #{contractName}</if>
+		</set>
+		where id = #{id}
+	</update>
+	
+	<delete id="delete">
+		delete from tb_contract where id = #{value}
+	</delete>
+	
+	<delete id="deleteBatch">
+		delete from tb_contract where id in 
+		<foreach item="id" collection="array" open="(" separator="," close=")">
+			#{id}
+		</foreach>
+	</delete>
+
+</mapper>

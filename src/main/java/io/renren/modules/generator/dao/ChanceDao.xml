@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="io.renren.modules.generator.dao.ChanceDao">
+
+    <!-- 可根据自己的需求，是否要使用 -->
+    <resultMap type="io.renren.modules.generator.entity.ChanceEntity" id="chanceMap">
+        <result property="id" column="id"/>
+        <result property="userId" column="user_id"/>
+        <result property="cluesId" column="clues_id"/>
+    </resultMap>
+
+    <select id="queryObject" resultType="io.renren.modules.generator.entity.ChanceEntity">
+		select * from tb_chance where id = #{value}
+	</select>
+
+    <select id="selectByUserId" resultType="io.renren.modules.generator.entity.ChanceExtendsEntity">
+		SELECT
+		    tb_chance.id AS id,
+            tb_clues.clue_name AS chanceName ,
+            tb_product.name AS  productName ,
+            tb_customer.name AS  customerName,
+            tb_customer.mobile AS customerMobile,
+            tb_customer.address AS customerAddress
+        FROM tb_chance
+        LEFT JOIN tb_clues ON tb_chance.clues_id = tb_clues.id
+          LEFT JOIN tb_customer ON customer_id = tb_customer.id
+          LEFT JOIN tb_product ON product_id = tb_product.id
+        WHERE tb_chance.user_id =  #{value}
+	</select>
+    <select id="selectCluesId" resultType="java.lang.Integer">
+        SELECT tb_chance.clues_id from tb_chance WHERE id = #{value};
+    </select>
+    <select id="queryList" resultType="io.renren.modules.generator.entity.ChanceEntity">
+        select * from tb_chance
+        <choose>
+            <when test="sidx != null and sidx.trim() != ''">
+                order by ${sidx} ${order}
+            </when>
+            <otherwise>
+                order by id desc
+            </otherwise>
+        </choose>
+        <if test="offset != null and limit != null">
+            limit #{offset}, #{limit}
+        </if>
+    </select>
+
+    <select id="queryTotal" resultType="int">
+		select count(*) from tb_chance 
+	</select>
+
+    <insert id="save" parameterType="io.renren.modules.generator.entity.ChanceEntity" useGeneratedKeys="true"
+            keyProperty="id">
+		insert into tb_chance
+		(
+			`user_id`, 
+			`clues_id`
+		)
+		values
+		(
+			#{userId}, 
+			#{cluesId}
+		)
+	</insert>
+
+    <update id="update" parameterType="io.renren.modules.generator.entity.ChanceEntity">
+        update tb_chance
+        <set>
+            <if test="userId != null">`user_id` = #{userId},</if>
+            <if test="cluesId != null">`clues_id` = #{cluesId}</if>
+        </set>
+        where id = #{id}
+    </update>
+
+    <delete id="delete">
+		delete from tb_chance where id = #{value}
+	</delete>
+
+    <delete id="deleteBatch">
+        delete from tb_chance where id in
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+
+</mapper>

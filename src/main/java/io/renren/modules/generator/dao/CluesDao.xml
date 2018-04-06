@@ -49,7 +49,28 @@
 		</choose>
 
 	</select>
-	
+
+
+	<!--根据类型id来查询市场线索-->
+	<select id="queryListById" resultType="io.renren.modules.generator.entity.CluesExtendsEntity" parameterType="java.lang.Integer">
+		select tb_clues.clue_name, tb_clues.id ,tb_clues.product_id,tb_clues.customer_id,tb_clues.type_id,
+		tb_product.name AS productName,tb_product.`describe`,tb_product.price,tb_product.unit,
+		tb_customer.name AS customerName,tb_customer.address,tb_customer.business,tb_customer.email,tb_customer.mobile,
+		tb_type.type_name
+		from tb_clues
+		LEFT JOIN tb_product ON tb_product.id=tb_clues.product_id
+		LEFT JOIN tb_customer ON tb_customer.id=tb_clues.customer_id
+		LEFT JOIN tb_type ON tb_type.id = tb_clues.type_id
+		WHERE tb_clues.id= #{id}
+		<choose>
+			<otherwise>
+				order by id desc
+			</otherwise>
+		</choose>
+
+	</select>
+
+
  	<select id="queryTotal" resultType="int">
 		select count(*) from tb_clues 
 	</select>

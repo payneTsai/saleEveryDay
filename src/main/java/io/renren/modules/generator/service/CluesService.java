@@ -30,4 +30,7 @@ public interface CluesService {
 	void deleteBatch(Integer[] ids);
 
 	List<CluesExtendsEntity> queryListByTypeId(Integer typeId);
+
+	List<CluesExtendsEntity> queryListById(Integer id);
+
 }

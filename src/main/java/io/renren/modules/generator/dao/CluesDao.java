@@ -19,4 +19,5 @@ import java.util.List;
 public interface CluesDao extends BaseDao<CluesEntity> {
     List<CluesExtendsEntity> queryListByTypeId(Integer typeId);
 
+    List<CluesExtendsEntity> queryListById(Integer Id);
 }
